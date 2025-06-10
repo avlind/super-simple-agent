@@ -12,7 +12,17 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+import logging
+import os
 import uuid
+import silly
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+)
+logger = logging.getLogger(__name__)
+
 
 def flip_a_coin() -> str:
     """Simulates flipping a coin, returning either "Heads" or "Tails".
@@ -21,6 +31,8 @@ def flip_a_coin() -> str:
         A string indicating the the result of the coin flip.
         Example: 'Heads'
     """
+    # Placeholder implementation - replace with actual video call initiation
+    logger.info("Flipping a coin...")
 
     # simulate flipping a coin with equal probability of heads or tails
     result = "Heads" if uuid.uuid4().int % 2 == 0 else "Tails"
@@ -34,7 +46,38 @@ def roll_die(die_sides: int) -> str:
         A string indicating the the result of the roll of a die.
         Example: '8'
     """
+    # Placeholder implementation - replace with actual video call initiation
+    logger.info("rolling a die...")
 
     # simulate rolling a die based on the number of sides
-    result = str(uuid.uuid4().int % die_sides)
+    result = str(uuid.uuid4().int % die_sides + 1)
+    return result
+
+def list_environment_variables() -> dict[str, str]:
+    """Lists specified environment variables: 'variable1' and 'variable2'.
+
+    Returns:
+        A dictionary where keys are the specified environment variable names
+        and values are their corresponding values. If a variable is not set,
+        it will not be included in the dictionary.
+    """
+    logger.info("Listing specific environment variables: variable1, variable2...")
+    specified_vars = ["VARIABLE1", "VARIABLE2"]
+    env_vars = {}
+    for var_name in specified_vars:
+        var_value = os.environ.get(var_name)
+        if var_value is not None:
+            env_vars[var_name] = var_value
+    return env_vars
+
+def pick_a_thing() -> str:
+    """Goes into the overstuffed closet and return item from the closet.
+
+    Returns:
+        A string indicating the thing you picked.
+        Example: 'a tub of hams'
+    """
+
+    logger.info("Getting a thing from the closet...")
+    result = silly.a_thing()
     return result
